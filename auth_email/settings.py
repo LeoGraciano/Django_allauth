@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -32,14 +33,14 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'django.contrib.admin',
-    #Garanta que esse app esta aqui
+    # Garanta que esse app esta aqui
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
-    #Garanta que esse app esta aqui
+    # Garanta que esse app esta aqui
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    ## Precisa ser adicionado
+    # Precisa ser adicionado
     'django.contrib.sites',
     'allauth',
     'allauth.account',
@@ -62,12 +63,14 @@ ROOT_URLCONF = 'auth_email.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates'],
+        'DIRS': [
+            os.path.join(BASE_DIR / 'templates'),
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
-                #Verificar se esse processo esta aqui no template
+                # Verificar se esse processo esta aqui no template
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
@@ -133,7 +136,7 @@ STATIC_URL = '/static/'
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
     'allauth.account.auth_backends.AuthenticationBackend',
-    ]
+]
 
 SITE_ID = 1
 LOGIN_REDIRECT_URL = '/'
